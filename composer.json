@@ -7,6 +7,7 @@
     "require": {
         "php": "^8.2",
         "filament/filament": "^3.2",
+        "flowframe/laravel-trend": "^0.2.0",
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9",
         "predis/predis": "^2.2"
@@ -30,7 +31,10 @@
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/"
-        }
+        },
+        "files": [
+            "app/Helpers/helpers.php"
+        ]
     },
     "scripts": {
         "post-autoload-dump": [
