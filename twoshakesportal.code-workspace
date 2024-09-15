@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../tsfil"
+		},
+		{
+			"path": "../tsr"
+		}
+	],
+	"settings": {}
+}
