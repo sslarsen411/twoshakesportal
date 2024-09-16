@@ -9,6 +9,7 @@ use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
 use Filament\Support\Enums\MaxWidth;
 use Illuminate\Support\Facades\Auth;
+use App\Livewire\CustomProfileComponent;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Support\Facades\FilamentView;
 use Illuminate\Session\Middleware\StartSession;
@@ -20,6 +21,7 @@ use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
+use Joaopaulolndev\FilamentEditProfile\FilamentEditProfilePlugin;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -34,6 +36,7 @@ class AdminPanelProvider extends PanelProvider
             ->maxContentWidth(MaxWidth::FitContent)
             ->font('Josefin Sans')
             ->brandLogo(fn () => view('filament.component.brand'))
+            ->topNavigation()
             ->colors([
                 'danger' => Color::Rose,
                 'gray' => Color::Gray,
@@ -47,6 +50,23 @@ class AdminPanelProvider extends PanelProvider
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([
                 Pages\Dashboard::class,
+            ])
+            ->plugins([
+                FilamentEditProfilePlugin::make()
+                
+                   ->slug('my-profile')
+                   ->setTitle('Profile')
+                   ->setNavigationLabel('Profile')
+                   ->setNavigationGroup('Edit Profile')
+                   ->setIcon('heroicon-o-user')
+                   ->setSort(10)
+                  
+                   ->shouldRegisterNavigation(true)
+                   ->shouldShowDeleteAccountForm(false)
+                   
+                   ->shouldShowBrowserSessionsForm()
+                   ->shouldShowAvatarForm()
+                   
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
